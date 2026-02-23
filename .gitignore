@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+
+# Data / results
+*.npz
+*.npy
+*.pth
+*.pt
+*.zip
+
+# System
+.DS_Store
