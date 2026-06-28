@@ -10,7 +10,7 @@ The script will:
  - convert to igraph
  - create random node features
  - attempt to import and run ECHO (first tries `from echo import ECHO`, then falls back
-   to loading `echo_gnn_v3.py` dynamically and finding an ECHO class or Trainer)
+   to loading `echo_gnn.py` dynamically and finding an ECHO class or Trainer)
  - measure runtime and print a short report
 """
 import argparse
@@ -65,7 +65,7 @@ def load_echo_class(repo_root):
     """
     Attempts to obtain a class named ECHO (or Trainer) from available code paths.
     1) Try standard import: from echo import ECHO
-    2) Fallback: dynamically load echo_gnn_v3.py and introspect for ECHO/Trainer.
+    2) Fallback: dynamically load echo_gnn.py and introspect for ECHO/Trainer.
     Returns: (echo_class, source_desc)
     """
     # 1) Try installed package
@@ -85,8 +85,8 @@ def load_echo_class(repo_root):
     except Exception:
         pass
 
-    # 2) Try to import echo_gnn_v3.py from repo root
-    candidate = os.path.join(repo_root, "echo_gnn_v3.py")
+    # 2) Try to import echo_gnn.py from repo root
+    candidate = os.path.join(repo_root, "echo_gnn.py")
     if os.path.exists(candidate):
         try:
             name = "echo_gnn_v3_local"
@@ -103,10 +103,10 @@ def load_echo_class(repo_root):
             # else if the module defines a fit(G, X) function, we will return module itself
             return module, f"local file {candidate} (module fallback)"
         except Exception as e:
-            print("Failed to load echo_gnn_v3.py dynamically:", e)
+            print("Failed to load echo_gnn.py dynamically:", e)
             raise
     else:
-        raise FileNotFoundError("Could not find 'echo_gnn_v3.py' in repo root.")
+        raise FileNotFoundError("Could not find 'echo_gnn.py' in repo root.")
 
 
 def run_benchmark(n=1000, mu=0.1, feat_dim=16, seed=42, epochs=10, verbose=True):
@@ -134,7 +134,7 @@ def run_benchmark(n=1000, mu=0.1, feat_dim=16, seed=42, epochs=10, verbose=True)
             # try to instantiate with reasonable defaults
             model_instance = EchoClassOrModule(feat_dim=feat_dim, hidden_dim=64, diff_steps=1, epochs=epochs)
             print("Instantiated ECHO class; calling fit(G, X)...")
-            model_instance.fit(G_ig, X, verbose=verbose)
+            model_instance.fit(G_ig, X, verbose=verbose, use_amp=False)
             # prefer predict() if available
             if hasattr(model_instance, "predict"):
                 labels = model_instance.predict()
