@@ -4,6 +4,10 @@
 Author: Emilio Ferrara\
 Year: 2026
 
+> **Published:** Emilio Ferrara, *ECHO: Encoding Communities via High-order Operators*,
+> **Machine Learning with Applications**, vol. 25 (2026), art. 100930 (open access).
+> DOI: [10.1016/j.mlwa.2026.100930](https://doi.org/10.1016/j.mlwa.2026.100930)
+
 This repository contains the original research implementation of
 **ECHO**, a scalable, self-supervised framework for attributed community
 detection in large-scale networks.
@@ -188,9 +192,14 @@ The script:
 
 ``` bibtex
 @article{ferrara2026echo,
-  title={ECHO: Encoding Communities via High-order Operators},
-  author={Ferrara, Emilio},
-  year={2026}
+  title     = {{ECHO}: Encoding Communities via High-order Operators},
+  author    = {Ferrara, Emilio},
+  journal   = {Machine Learning with Applications},
+  volume    = {25},
+  pages     = {100930},
+  year      = {2026},
+  publisher = {Elsevier},
+  doi       = {10.1016/j.mlwa.2026.100930}
 }
 ```
 

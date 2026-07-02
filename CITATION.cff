@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "ECHO: Encoding Communities via High-order Operators"
+authors:
+  - family-names: Ferrara
+    given-names: Emilio
+    orcid: "https://orcid.org/0000-0002-1942-2831"
+version: 3.0.0
+license: Apache-2.0
+repository-code: "https://github.com/emilioferrara/ECHO-GNN"
+preferred-citation:
+  type: article
+  title: "ECHO: Encoding Communities via High-order Operators"
+  authors:
+    - family-names: Ferrara
+      given-names: Emilio
+      orcid: "https://orcid.org/0000-0002-1942-2831"
+  journal: "Machine Learning with Applications"
+  volume: 25
+  start: 100930
+  year: 2026
+  doi: "10.1016/j.mlwa.2026.100930"
